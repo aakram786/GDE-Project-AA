@@ -9,8 +9,18 @@ app = Flask(__name__)
 @app.route('/get_user_name')
 @app.route('/get_user_name/<user_id>')
 def get_user_name(user_id):
-    username = db_connector.get_user_name_from_db(user_id)
-    return username
+   # username = db_connector.get_user_name_from_db(user_id)
+   try:
+       conn = db_connector.get_con()
+       cursor = conn.cursor()
+       query = f"SELECT user_name FROM sql8641160.users WHERE user_id = {user_id}"
+       cursor.execute(query)
+       user = str(cursor.fetchall()[0])
+       cursor.close()
+       conn.close()
+       return "<H1 id = 'user'>" + user + "</H1>", 200  # status code
+   except:
+       return "<H1 id = 'error'>" "no such user" + user + "</H1>", 500  # status code
 
 # host is pointing at local machine address
 # debug is used for more detailed logs + hot swaping

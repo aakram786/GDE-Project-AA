@@ -20,6 +20,7 @@ def post_test(user_id, user_name):
 
     if useradded == userget:
         print ("user matched database")
-        return userget
+
+    return userget
 
 

@@ -9,6 +9,7 @@ cursor = conn.cursor()
 query =f"SELECT user_name FROM sql8641160.users WHERE user_id = 1"
 cursor.execute(query)
 user = cursor.fetchall()
+print (f'Username from db call {user[0]} for is 1')
 cursor.close()
 conn.close()
 

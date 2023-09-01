@@ -1,6 +1,6 @@
 import requests
 
-def post_test(user_id, user_name)
+def post_test(user_id, user_name):
     url = f"http://127.0.0.1:5000/users/{user_id}"
     res = requests.post(url, json={"user_name":user_name})
     data = res.json()

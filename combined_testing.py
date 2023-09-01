@@ -2,7 +2,7 @@ import backend_testing
 import frontend_testing
 import db_connector
 
-check_user_added = backend_testing.post_test(1,john)
+check_user_added = backend_testing.post_test(1,'john')
 
 conn = db_connector.get_con()
 cursor = conn.cursor()

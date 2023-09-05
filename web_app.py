@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify, Response
 import db_connector
+import os
+import signal
 
 
 
@@ -21,6 +23,11 @@ def get_user_name(user_id):
        return "<H1 id = 'user'>" + user + "</H1>", 200  # status code
    except:
        return "<H1 id = 'error'>" "no such user" + user + "</H1>", 500  # status code
+#Use this to stop the server
+@app.route('/stop_server')
+def stop_server():
+    os.kill(os.getpid(), signal.SIGINT)
+    return 'Server stopped'
 
 # host is pointing at local machine address
 # debug is used for more detailed logs + hot swaping

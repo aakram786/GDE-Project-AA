@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify, Response
 import db_connector
+import os
+import signal
 
 
 
@@ -61,7 +63,10 @@ def user(user_id):
             return jsonify({ "status":"ok", "user_deleted":user_id }), 200 # status code
         except:
             return jsonify({"status": "error", "reason": "no such id"}), 500  # status code
-
+@app.route('/stop_server')
+def stop_server():
+    os.kill(os.getpid(), signal.SIGINT)
+    return 'Server stopped'
 
 
 # host is pointing at local machine address

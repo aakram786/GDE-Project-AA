@@ -18,4 +18,4 @@ def check_user(user_id):
 
     return(element.text)
 
-#check_user(1)
+check_user(1)

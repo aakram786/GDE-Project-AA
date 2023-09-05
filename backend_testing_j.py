@@ -23,6 +23,6 @@ def post_test(user_id, user_name):
 
     return userget
 
-#post_test(1,'john')
+post_test(1,'john')
 
 

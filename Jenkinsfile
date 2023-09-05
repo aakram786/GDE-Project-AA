@@ -1,13 +1,13 @@
 pipeline {
     agent any
     options {
-            buildDiscarder(logRotator(numToKeepStr: '1', artifactDaysToKeepStr: '1'))
+            buildDiscarder(logRotator(numToKeepStr: '20', artifactDaysToKeepStr: '5'))
     }
     stages {
         stage('checkout') {
             steps {
                 script {
-                    properties([pipelineTriggers([pollSCM('* * * * *')])])
+                    properties([pipelineTriggers([pollSCM('30 * * * *')])])
                 }
                 git 'https://github.com/aakram786/GDE-Project-AA.git'
             }
@@ -15,14 +15,14 @@ pipeline {
         stage('run rest app') {
             steps {
 
-                sh '/Users/anwarakram/PycharmProjects/GDE-Project/venv/bin/python rest_app.py &'
+                sh 'nohup /Users/anwarakram/PycharmProjects/GDE-Project/venv/bin/python rest_app.py &'
 
             }
         }
         stage('run web app') {
             steps {
 
-                sh '/Users/anwarakram/PycharmProjects/GDE-Project/venv/bin/python web_app.py &'
+                sh 'nohup /Users/anwarakram/PycharmProjects/GDE-Project/venv/bin/python web_app.py &'
 
             }
         }

@@ -31,7 +31,9 @@ def user(user_id):
             cursor = conn.cursor()
             query =f"SELECT user_name FROM sql8641160.users WHERE user_id = {user_id}"
             cursor.execute(query)
-            user = str(cursor.fetchall()[0])
+            cursor.scroll(o,mode='absolute')
+            user = cursor.fetchone()
+            #user = str(cursor.fetchall()[0])
             cursor.close()
             conn.close()
             return jsonify({ "status":"ok", "user_name":user }), 200 # status code
